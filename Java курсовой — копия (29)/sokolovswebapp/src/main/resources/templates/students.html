@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex align-items-center">
+        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+            School Journal Web Application
+        </h1>
+    </div>
+</header>
+<main class="container p-4 p-md-5 mb-4">
+    <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">Список учеников школы</h2>
+    <div class="table-responsive">
+        <table th:each="el : ${mstudents}" class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>Класс</th>
+                <th>Табельный номер ученика</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${el.id}"/>
+                <td th:text="${el.stsurname}"/>
+                <td th:text="${el.stname}"/>
+                <td th:text="${el.stthirdna}"/>
+                <td th:text="${el.stdateob}"/>
+                <td th:text="${el.studclass}">
+                <td th:text="${el.stdocumentnumber}"/>
+                <a th:href="'/students/' + ${el.id} + '/edit'" class="btn btn-warning" href="/students-edit">Редактировать</a>
+                <br><br><form th:action="'/students/' + ${el.id} + '/remove'" method="post">
+                    <button class="btn btn-warning" type="submit">Удалить</button>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="text-body-secondary py-5">
+    <div class="container">
+        <p class="mb-1"></p>
+    </div>
+</footer>
+</body>
+</html>
+
+
